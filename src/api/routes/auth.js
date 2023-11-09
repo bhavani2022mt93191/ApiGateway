@@ -18,7 +18,6 @@ const verifyToken = (req, res, next) => {
   } catch (err) {
     return res.status(401).send("Invalid Token");
   }
-  console.log("authenticated")
   return next();
 };
 

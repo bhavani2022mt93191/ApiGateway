@@ -1,10 +1,11 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-const userService = require("../../index");
+require("dotenv").config();
+const userService = process.env.USER_SERVICE;
 
 router.post("/", (req, res, next) => {
-  axios.post(`http://localhost:3002/user/login`,req.body)
+  axios.post(`${userService}/login`,req.body)
     .then(response => {
             res.send(response.data); // Send the data back to the client
     })

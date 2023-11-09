@@ -23,5 +23,9 @@ const userRoutes = require("./api/routes/user");
 app.use("/user", userRoutes);
 const loginRoutes = require("./api/routes/login");
 app.use("/login", loginRoutes);
+const appointmentRoute = require("./api/routes/appointment");
+app.use("/appointment", appointmentRoute);
+const doctorRoute = require("./api/routes/doctor");
+app.use("/doctor", doctorRoute);
 
 module.exports = app;

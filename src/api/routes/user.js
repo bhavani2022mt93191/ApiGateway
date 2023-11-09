@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 require("dotenv").config();
-const userService = require("../../index");
+const userService = process.env.USER_SERVICE;
 const verifyToken = require("./auth");
 const { send400ErrorResponse, send500ErrorResponse } = require("./utils");
 
+console.log("user ser, ", userService);
 //returns user details
 router.get("/", verifyToken, async (req, res, next) => {
   axios
@@ -42,7 +44,6 @@ router.post("/", verifyToken, (req, res) => {
       send400ErrorResponse(res);
       return;
     }
-    console.log("new user", user)
     axios
       .post(`${userService}/user`, user)
       .then((response) => {

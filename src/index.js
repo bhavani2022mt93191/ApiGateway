@@ -7,6 +7,7 @@ const userService = process.env.USER_SERVICE || "http://localhost:3002"
 const appointmentService = process.env.APPOINTMENT_SERVICE || "http://localhost:3004"
 
 console.log("port: ", port )
+console.log("userService: ", userService )
 
 //App.js contains the code to process the http request and send the response
 const server = http.createServer(app);
