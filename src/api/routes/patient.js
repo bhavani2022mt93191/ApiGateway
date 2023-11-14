@@ -7,15 +7,15 @@ const verifyToken = require("./auth");
 const { send400ErrorResponse, send500ErrorResponse } = require("./utils");
 
 //returns all doctors scheduled appointments from past months
-router.get("/:did/appointments", verifyToken, async (req, res, next) => {
-  const did = req.params.did;
+router.get("/:pid/appointments", verifyToken, async (req, res, next) => {
+  const pid = req.params.pid;
   const pastMonthsCnt = req.query?.pastMonths || 0;
-  if (!did) {
+  if (!pid) {
     send400ErrorResponse(res);
     return;
   }
   axios
-    .get(`${bookingService}/appointment/doctor/${did}?pastMonths=${pastMonthsCnt}`)
+    .get(`${bookingService}/appointment/patient/${pid}?pastMonths=${pastMonthsCnt}`)
     .then((response) => {
       res.send(response.data);
     })

@@ -10,7 +10,7 @@ console.log("user ser, ", userService);
 //returns user details
 router.get("/", verifyToken, async (req, res, next) => {
   axios
-    .get(`${userService}/user`)
+    .get(`${userService}/user?type=${req.query?.type}`)
     .then((response) => {
       res.send(response.data);
     })
@@ -54,6 +54,27 @@ router.post("/", verifyToken, (req, res) => {
       });
   } catch (error) {
     console.log("error", error);
+    return send500ErrorResponse(res);
+  }
+});
+
+//Admin adds new user
+router.patch("/", verifyToken, (req, res) => {
+  try {
+    const user = req.body;
+    if (!user || !(user.id && user.mobile)) {
+      send400ErrorResponse(res);
+      return;
+    }
+    axios
+      .patch(`${userService}/user`, user)
+      .then((response) => {
+        return res.send(response.data);
+      })
+      .catch((error) => {
+        return send500ErrorResponse(res);
+      });
+  } catch (error) {
     return send500ErrorResponse(res);
   }
 });

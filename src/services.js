@@ -19,6 +19,8 @@ app.use((req, res, next) => {
   });
 
 // Routes which should handle requests
+const registerRoute = require("./api/routes/register");
+app.use("/signUp", registerRoute);
 const userRoutes = require("./api/routes/user");
 app.use("/user", userRoutes);
 const loginRoutes = require("./api/routes/login");
@@ -27,5 +29,7 @@ const appointmentRoute = require("./api/routes/appointment");
 app.use("/appointment", appointmentRoute);
 const doctorRoute = require("./api/routes/doctor");
 app.use("/doctor", doctorRoute);
+const patientRoute = require("./api/routes/patient");
+app.use("/patient", patientRoute);
 
 module.exports = app;

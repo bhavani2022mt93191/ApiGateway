@@ -11,8 +11,7 @@ router.post("/", (req, res, next) => {
     })
     .catch(error => {
       // Handle errors here
-      console.error(error);
-      res.status(500).send('An error occurred'); // Send an error response to the client
+      res.status(500).send(error.response.data? error.response.data : 'An error occurred'); // Send an error response to the client
     });
 });
 
